@@ -12,12 +12,12 @@ import type { Category, Command, Role } from "@/lib/types";
 import { useActiveSection } from "@/lib/useActiveSection";
 
 function NavigateTo(Id: string) {
-  document.getElementById(Id)?.scrollIntoView({ behavior: "smooth" });
+  document.getElementById(Id)?.scrollIntoView();
   history.replaceState(null, "", `#${Id}`);
 }
 
 function GoToTop() {
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  window.scrollTo({ top: 0 });
   history.replaceState(null, "", "#top");
 }
 
@@ -187,22 +187,23 @@ export function CommandBrowser({ Categories }: { Categories: Category[] }) {
             Stuck ? "border-border" : "border-transparent"
           }`}
         >
-          <div className="flex items-center gap-4">
-            {Stuck && (
-              <a
-                href="#top"
-                aria-label="back to top"
-                className="hidden shrink-0 animate-[fade-in_150ms_ease-out] sm:block"
-              >
-                <Image
-                  src="/assets/cw-icon.svg"
-                  alt=""
-                  width={88}
-                  height={62}
-                  className="h-7 w-auto"
-                />
-              </a>
-            )}
+          <div className="flex items-center">
+            <a
+              href="#top"
+              aria-label="back to top"
+              inert={!Stuck || undefined}
+              className={`hidden shrink-0 overflow-hidden transition-[width,opacity] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] sm:block ${
+                Stuck ? "w-14 opacity-100" : "w-0 opacity-0"
+              }`}
+            >
+              <Image
+                src="/assets/cw-icon.svg"
+                alt=""
+                width={88}
+                height={62}
+                className="h-7 w-auto max-w-none"
+              />
+            </a>
             <div className="min-w-0 flex-1">
               <SearchBar Value={Query} OnChange={SetQuery} ResultCount={TotalResults} />
             </div>
@@ -265,7 +266,7 @@ export function CommandBrowser({ Categories }: { Categories: Category[] }) {
           aria-label="back to top"
           tabIndex={BarHidden ? -1 : undefined}
           onClick={GoToTop}
-          className={`fixed bottom-5 right-5 z-20 hidden h-10 w-10 items-center justify-center border border-border bg-surface font-mono text-foreground-muted transition-[opacity,transform,border-color,color] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-foreground-dim hover:text-foreground active:scale-95 lg:flex ${
+          className={`fixed bottom-5 right-5 z-20 hidden h-10 w-10 items-center justify-center border border-border bg-surface font-mono text-foreground-muted transition-[opacity,translate,scale,border-color,color] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-foreground-dim hover:text-foreground active:scale-[0.96] lg:flex ${
             BarHidden ? "pointer-events-none translate-y-2 opacity-0" : "translate-y-0 opacity-100"
           }`}
           style={{ borderRadius: "var(--radius)" }}
@@ -322,7 +323,7 @@ export function CommandBrowser({ Categories }: { Categories: Category[] }) {
                 GoToTop();
                 SetMobileNavOpen(false);
               }}
-              className="flex w-12 items-center justify-center border-l border-border font-mono text-foreground-muted transition-transform duration-150 ease-out active:scale-95 active:bg-surface"
+              className="flex w-12 items-center justify-center border-l border-border font-mono text-foreground-muted transition-transform duration-150 ease-out active:scale-[0.96] active:bg-surface"
             >
               ↑
             </button>
@@ -331,7 +332,7 @@ export function CommandBrowser({ Categories }: { Categories: Category[] }) {
           {MobileNavOpen && (
             <nav
               aria-label="command categories"
-              className="absolute inset-x-0 bottom-full border-x border-t border-border bg-background"
+              className="absolute inset-x-0 bottom-full animate-[fade-in_80ms_ease-out] border-x border-t border-border bg-background"
             >
               <ul
                 ref={PanelRef}

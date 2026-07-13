@@ -10,7 +10,7 @@ export function BackToTop() {
     <button
       type="button"
       onClick={HandleClick}
-      className="font-mono text-foreground-dim transition-colors hover:text-foreground"
+      className="relative font-mono text-foreground-dim transition-colors before:absolute before:-inset-3.5 before:content-[''] hover:text-foreground"
     >
       back to top ↑
     </button>

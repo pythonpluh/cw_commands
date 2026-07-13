@@ -81,15 +81,15 @@ export function SearchBar({
         style={{ borderRadius: "var(--radius)" }}
       />
 
-      {ShowShortcutHint && (
-        <kbd
-          aria-hidden
-          className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 border border-border bg-background px-1.5 font-mono text-xs text-foreground-dim"
-          style={{ borderRadius: "var(--radius)" }}
-        >
-          /
-        </kbd>
-      )}
+      <kbd
+        aria-hidden
+        className={`pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 border border-border bg-background px-1.5 font-mono text-xs text-foreground-dim transition-opacity duration-150 ${
+          ShowShortcutHint ? "opacity-100" : "opacity-0"
+        }`}
+        style={{ borderRadius: "var(--radius)" }}
+      >
+        /
+      </kbd>
 
       {ShowResultAndClear && (
         <div className="pointer-events-none absolute right-3 top-1/2 flex -translate-y-1/2 animate-[fade-in_150ms_ease-out] items-center gap-3">
@@ -103,7 +103,7 @@ export function SearchBar({
               InputRef.current?.focus();
             }}
             aria-label="Clear search"
-            className="pointer-events-auto relative flex h-7 w-7 items-center justify-center border border-border bg-background text-foreground-dim transition-colors before:absolute before:-inset-2 before:content-[''] hover:border-foreground-dim hover:text-foreground"
+            className="pointer-events-auto relative flex h-7 w-7 items-center justify-center border border-border bg-background text-foreground-dim transition-[color,border-color,scale] duration-150 before:absolute before:-inset-2 before:content-[''] hover:border-foreground-dim hover:text-foreground active:scale-[0.96]"
             style={{ borderRadius: "var(--radius)" }}
           >
             {/* biome-ignore lint/a11y/noSvgWithoutTitle: decor */}

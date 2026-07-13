@@ -61,10 +61,12 @@ export function CopyButton({ Text }: { Text: string }) {
     }, 2000);
   }
 
+  const HitArea = "relative before:absolute before:-inset-2 before:content-['']";
+
   const ClassName =
     Status === "error"
-      ? "flex shrink-0 items-center gap-1.5 border border-warning bg-background px-2.5 py-1.5 text-xs font-medium text-warning transition duration-150 active:scale-[0.97]"
-      : "flex shrink-0 items-center gap-1.5 border border-foreground-dim bg-background px-2.5 py-1.5 text-xs font-medium text-foreground transition duration-150 hover:border-foreground hover:text-foreground active:scale-[0.97]";
+      ? `flex shrink-0 items-center gap-1.5 border border-warning bg-background px-2.5 py-1.5 text-xs font-medium text-warning transition duration-150 active:scale-[0.96] ${HitArea}`
+      : `flex shrink-0 items-center gap-1.5 border border-foreground-dim bg-background px-2.5 py-1.5 text-xs font-medium text-foreground transition duration-150 hover:border-foreground hover:text-foreground active:scale-[0.96] ${HitArea}`;
 
   return (
     <button
@@ -76,7 +78,7 @@ export function CopyButton({ Text }: { Text: string }) {
     >
       {Status === "copied" && (
         <>
-          {/* biome-ignore lint/a11y/noSvgWithoutTitle: aria-label carrys the state */}
+          {/* biome-ignore lint/a11y/noSvgWithoutTitle: decor */}
           <svg key={CopyCount} width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden>
             <path
               d="M2.5 6.5 L5 9 L9.5 3.5"
@@ -93,7 +95,7 @@ export function CopyButton({ Text }: { Text: string }) {
       )}
       {Status === "error" && (
         <>
-          {/* biome-ignore lint/a11y/noSvgWithoutTitle: aria-label carrys the state */}
+          {/* biome-ignore lint/a11y/noSvgWithoutTitle: decor */}
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden>
             <circle cx="6" cy="6" r="4.5" stroke="currentColor" strokeWidth="1.2" fill="none" />
             <path d="M6 3.75 V6.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
@@ -104,7 +106,7 @@ export function CopyButton({ Text }: { Text: string }) {
       )}
       {Status === "idle" && (
         <>
-          {/* biome-ignore lint/a11y/noSvgWithoutTitle: aria-label carrys the state */}
+          {/* biome-ignore lint/a11y/noSvgWithoutTitle: decor */}
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden>
             <rect
               x="3.5"
