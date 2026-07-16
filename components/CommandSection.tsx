@@ -3,7 +3,7 @@ import type { Category, Role } from "@/lib/types";
 
 export function CommandSection({
   Category,
-  HighlightRoles,
+  HighlightRoles, 
 }: {
   Category: Category;
   HighlightRoles?: Role[];
@@ -12,7 +12,7 @@ export function CommandSection({
   const CountLabel = `${CommandCount} ${CommandCount === 1 ? "command" : "commands"}`;
 
   return (
-    <section id={Category.Id} data-section={Category.Id} className="scroll-mt-28">
+    <section id={Category.Id} data-section={Category.Id}>
       <div className="mb-4 flex items-baseline gap-3 border-b border-border pb-2">
         <h2 className="text-xl font-bold uppercase tracking-tight text-foreground">
           {Category.Name}
