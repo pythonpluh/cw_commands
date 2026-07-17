@@ -1,5 +1,6 @@
 "use client";
 
+import { play } from "cuelume";
 import { useEffect, useRef, useState } from "react";
 
 export function SearchBar({
@@ -71,9 +72,18 @@ export function SearchBar({
         ref={InputRef}
         type="search"
         value={Value}
-        onChange={(Event) => OnChange(Event.target.value)}
-        onFocus={() => SetFocused(true)}
-        onBlur={() => SetFocused(false)}
+        onChange={(Event) => {
+          play("tick");
+          OnChange(Event.target.value);
+        }}
+        onFocus={() => {
+          play("press");
+          SetFocused(true);
+        }}
+        onBlur={() => {
+          play("release");
+          SetFocused(false);
+        }}
         placeholder="search commands…"
         aria-label="search commands"
         aria-keyshortcuts="/"
@@ -98,6 +108,8 @@ export function SearchBar({
           </span>
           <button
             type="button"
+            data-cuelume-hover="tick"
+            data-cuelume-toggle="whisper"
             onClick={() => {
               OnChange("");
               InputRef.current?.focus();

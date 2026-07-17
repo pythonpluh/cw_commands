@@ -3,6 +3,8 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
+import { UISounds } from "@/components/UISounds";
+
 const GeistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -45,7 +47,10 @@ export const viewport = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className="dark">
-      <body className={`${GeistSans.variable} ${GeistMono.variable} antialiased`}>{children}</body>
+      <body className={`${GeistSans.variable} ${GeistMono.variable} antialiased`}>
+        <UISounds />
+        {children}
+      </body>
     </html>
   );
 }

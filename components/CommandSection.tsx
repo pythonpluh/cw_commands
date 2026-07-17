@@ -3,7 +3,7 @@ import type { Category, Role } from "@/lib/types";
 
 export function CommandSection({
   Category,
-  HighlightRoles, 
+  HighlightRoles,
 }: {
   Category: Category;
   HighlightRoles?: Role[];

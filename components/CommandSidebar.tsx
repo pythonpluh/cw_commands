@@ -11,7 +11,7 @@ export function CommandSidebar({ Items }: { Items: SidebarItem[] }) {
   const { Active, Select } = useActiveSection(Items.map((Item) => Item.Id));
 
   const [Rect, SetRect] = useState<HoverRect | null>(null);
-  
+
   const [Hovering, SetHovering] = useState(false);
   const [Sliding, SetSliding] = useState(false);
 
@@ -55,10 +55,13 @@ export function CommandSidebar({ Items }: { Items: SidebarItem[] }) {
             <li key={Item.Id}>
               <a
                 href={`#${Item.Id}`}
+                data-cuelume-hover="tick"
+                data-cuelume-press
+                data-cuelume-release
                 onClick={() => Select(Item.Id)}
                 onMouseEnter={HandleEnter}
                 aria-current={IsActive ? "true" : undefined}
-                className={`relative flex items-baseline gap-3 px-3 py-2.5 text-sm transition-colors ${
+                className={`relative flex items-baseline gap-3 px-3 py-2.5 text-sm transition-[color,scale] duration-150 active:scale-[0.96] ${
                   IsActive
                     ? "bg-surface font-semibold text-foreground"
                     : "text-foreground-muted hover:text-foreground"

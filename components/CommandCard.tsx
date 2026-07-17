@@ -50,7 +50,7 @@ export function CommandCard({
             </span>
           ))}
           {Command.Bugged && (
-            <span className="text-warning" title="buggy / unreliable in this build.">
+            <span className="text-warning" title="buggy / unreliable">
               {" "}
               *
             </span>

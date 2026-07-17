@@ -192,6 +192,8 @@ export function CommandBrowser({ Categories }: { Categories: Category[] }) {
               href="#top"
               aria-label="back to top"
               inert={!Stuck || undefined}
+              data-cuelume-hover="tick"
+              data-cuelume-toggle="page"
               className={`hidden shrink-0 overflow-hidden transition-[width,opacity] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] sm:block ${
                 Stuck ? "w-14 opacity-100" : "w-0 opacity-0"
               }`}
@@ -232,6 +234,8 @@ export function CommandBrowser({ Categories }: { Categories: Category[] }) {
               {Query && (
                 <button
                   type="button"
+                  data-cuelume-hover="tick"
+                  data-cuelume-toggle="whisper"
                   onClick={() => SetQuery("")}
                   className="text-foreground-muted underline-offset-4 hover:text-foreground hover:underline"
                 >
@@ -241,6 +245,8 @@ export function CommandBrowser({ Categories }: { Categories: Category[] }) {
               {RoleFilterValue.length > 0 && (
                 <button
                   type="button"
+                  data-cuelume-hover="tick"
+                  data-cuelume-toggle="whisper"
                   onClick={() => SetRoleFilterValue([])}
                   className="text-foreground-muted underline-offset-4 hover:text-foreground hover:underline"
                 >
@@ -265,6 +271,8 @@ export function CommandBrowser({ Categories }: { Categories: Category[] }) {
           type="button"
           aria-label="back to top"
           tabIndex={BarHidden ? -1 : undefined}
+          data-cuelume-hover="tick"
+          data-cuelume-toggle="page"
           onClick={GoToTop}
           className={`fixed bottom-5 right-5 z-20 hidden h-10 w-10 items-center justify-center border border-border bg-surface font-mono text-foreground-muted transition-[opacity,translate,scale,border-color,color] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-foreground-dim hover:text-foreground active:scale-[0.96] lg:flex ${
             BarHidden ? "pointer-events-none translate-y-2 opacity-0" : "translate-y-0 opacity-100"
@@ -291,6 +299,7 @@ export function CommandBrowser({ Categories }: { Categories: Category[] }) {
             <button
               ref={NavToggleRef}
               type="button"
+              data-cuelume-toggle
               onClick={() => SetMobileNavOpen((Open) => !Open)}
               aria-expanded={MobileNavOpen}
               aria-controls={MobileNavOpen ? "mobile-category-nav" : undefined}
@@ -319,6 +328,7 @@ export function CommandBrowser({ Categories }: { Categories: Category[] }) {
             <button
               type="button"
               aria-label="back to top"
+              data-cuelume-toggle="page"
               onClick={() => {
                 GoToTop();
                 SetMobileNavOpen(false);
@@ -349,6 +359,7 @@ export function CommandBrowser({ Categories }: { Categories: Category[] }) {
                     <li key={Item.Id}>
                       <a
                         href={`#${Item.Id}`}
+                        data-cuelume-toggle="tick"
                         aria-current={IsActive ? "true" : undefined}
                         onClick={(Event) => {
                           Event.preventDefault();
@@ -356,7 +367,7 @@ export function CommandBrowser({ Categories }: { Categories: Category[] }) {
                           Select(Item.Id);
                           SetMobileNavOpen(false);
                         }}
-                        className={`flex items-baseline gap-3 px-4 py-3 text-sm active:bg-surface ${
+                        className={`flex items-baseline gap-3 px-4 py-3 text-sm transition-transform duration-150 ease-out active:scale-[0.97] active:bg-surface ${
                           IsActive
                             ? "bg-surface font-semibold text-foreground"
                             : "text-foreground-muted"

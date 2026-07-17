@@ -1,5 +1,7 @@
 "use client";
 
+import { play } from "cuelume";
+
 import type { Role } from "@/lib/types";
 
 const Options: Role[] = ["EVERYONE", "PS_OWNER", "MOD", "ADMIN", "DEV"];
@@ -14,7 +16,9 @@ export function RoleFilter({
   Counts: Record<Role, number>;
 }) {
   const Toggle = (Role: Role) => {
-    OnChange(Value.includes(Role) ? Value.filter((Entry) => Entry !== Role) : [...Value, Role]);
+    const TurningOff = Value.includes(Role);
+    play(TurningOff ? "press" : "release");
+    OnChange(TurningOff ? Value.filter((Entry) => Entry !== Role) : [...Value, Role]);
   };
 
   return (
@@ -29,6 +33,7 @@ export function RoleFilter({
         return (
           <label
             key={Role}
+            data-cuelume-hover="tick"
             className={`flex cursor-pointer items-center gap-1.5 border px-2 py-1 font-mono text-xs transition duration-150 active:scale-[0.96] ${
               IsActive
                 ? "border-foreground bg-foreground text-background"

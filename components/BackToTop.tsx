@@ -9,6 +9,8 @@ export function BackToTop() {
   return (
     <button
       type="button"
+      data-cuelume-hover="tick"
+      data-cuelume-toggle="page"
       onClick={HandleClick}
       className="relative font-mono text-foreground-dim transition-colors before:absolute before:-inset-3.5 before:content-[''] hover:text-foreground"
     >

@@ -1,5 +1,6 @@
 "use client";
 
+import { play } from "cuelume";
 import { useEffect, useRef, useState } from "react";
 
 type Status = "idle" | "copied" | "error";
@@ -49,8 +50,11 @@ export function CopyButton({ Text }: { Text: string }) {
 
       SetStatus("copied");
       SetCopyCount((Count) => Count + 1);
+
+      play("success");
     } catch {
       SetStatus("error");
+      play("error");
     }
 
     TimeoutRef.current = window.setTimeout(() => {
